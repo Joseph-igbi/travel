@@ -1,0 +1,45 @@
+
+
+{% extends "layout.html" %}
+{% block body_content %}
+
+<style>
+body{background-image: url('https://www.saracreativa.com/wp-content/uploads/2018/02/planet-Earth.gif');
+background-repeat: no-repeat;
+background-size: 30% 50%;
+background-position: center;}
+</style>
+
+<div class ='Text-center' >
+
+	<br>	
+	<br>	
+	<br>	
+	<p1> Type your name in to spin the globe </p2>
+
+	<form method='POST', action="">
+	<div class = 'form'>
+	{{form.hidden_tag()}}
+	{{form.name}}
+	{{form.submit}}
+		{% if form.name.errors %}
+	<div class = 'error'>
+		{% for error in form.name.errors %}
+			<span>{{error}}</span>
+		{% endfor %}
+	</div>
+	{% endif %}
+</form>
+	</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

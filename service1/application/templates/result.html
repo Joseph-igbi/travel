@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block body_content %}
+
+	<div class="text-center">
+		<h3> Your next destination should be: <h4>
+			<br>
+		<h3> Your recommended activity is: </h3>
+		<br>
+		<h4> {{location.name}} </h4>
+		<img src ='https://maps.googleapis.com/maps/api/place/photo?maxwidth={{width}}&photoreference={{ref}}&key=AIzaSyDHm-RLScd8iBylQ0YGNB44NcmKIU8teDQ' alt='Image' class= "img-thumbnail" style= 'float:center;width:25%;height:40%'>
+		<h5> {{location.address}} </h5>
+		<h5> Visitors ratings:{{location.rating}} </h5>
+		<br> 
+		<form method='POST' action='/search'>
+			<button type ='submit' class='btn btn-primary btn-sm'> Back to Home</button>
+		</form>
+
+
+
+
+
+	</div>
+
+
+{% endblock %}
+

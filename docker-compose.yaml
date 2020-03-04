@@ -1,0 +1,41 @@
+
+version: "3.7"
+services:
+   main_service:
+     build: ./service1
+     ports:
+     - target: 5000
+       published: 5000
+     environment: 
+     - SECRET_KEY="7218a9143c27c16610765205a1b21cb7"
+     - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
+
+   service2:
+     build: ./service2
+     ports:
+     - target: 5000
+     environment: 
+     - SECRET_KEY="7218a9143c27c16610765205a1b21cb7"
+     - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
+
+   service3:
+     build: ./service3
+     ports:
+     - target: 5000
+     environment: 
+     - SECRET_KEY="7218a9143c27c16610765205a1b21cb7"
+     - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
+
+   service4:
+     build: ./service4
+     ports:
+     - target: 5000
+     environment: 
+     - SECRET_KEY="7218a9143c27c16610765205a1b21cb7"
+     - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
+
+
+
+
+
+
