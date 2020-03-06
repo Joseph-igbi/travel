@@ -8,6 +8,7 @@ import requests
 def random_2():
     
     name = str(request.data.decode("utf-8"))
+    name = name.replace(' ','')
     length = len(name)
     number = random.randint(0,(length-1))
     letter= name[number]

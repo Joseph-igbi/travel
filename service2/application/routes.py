@@ -10,6 +10,9 @@ import requests
 def random_1():
     name = request.data.decode("utf-8")
 
+    name = name.replace(' ','')
+
+
     length = len(name)
     re = length %5
 

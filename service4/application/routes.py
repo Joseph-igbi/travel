@@ -20,8 +20,16 @@ def dbchoose():
 
     dbcity = City.query.filter_by(id=rand).first()
     city = str(dbcity.city_name)
+    country = str(dbcity.country)
+    
+    destination = str([city,country])
     
     
-    
-    
+    return str(destination)
+
+def get_country():
+    city = request.data.decode("utf-8")
+    city =str(city).strip("'")
+    data = City.query.filter(City.city_name.like(city)).first()
+    country = data.country
     return str(city)
