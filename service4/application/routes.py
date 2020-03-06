@@ -27,9 +27,4 @@ def dbchoose():
     
     return str(destination)
 
-def get_country():
-    city = request.data.decode("utf-8")
-    city =str(city).strip("'")
-    data = City.query.filter(City.city_name.like(city)).first()
-    country = data.country
-    return str(city)
+

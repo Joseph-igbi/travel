@@ -97,8 +97,8 @@ def result(city,country,name):
     name = str(name)
     city = str(city)
     country= str(country).strip("'")
-    url='https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attraction&language=en&key=AIzaSyDHm-RLScd8iBylQ0YGNB44NcmKIU8teDQ'
-    r = requests.get(url.format(city)).json()
+    url='https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attraction&language=en&key=AIzaSyDKXf1NroHglJxb_2GF3VsT_N67Q4XH7ac'
+    r = requests.get(url.format(country)).json()
     num=random.randint(0,len(r['results'])-1)
     location = {
                 'name': r['results'][num]['name'],
@@ -127,7 +127,7 @@ def add_location(country,activity,rating,city,ref):
     city=str(city).strip("'")
     ref = str(ref)
 
-    location = Locations(country=country, city=city, activity= activity, address=rating, user_id = current_user.id, ref=ref)
+    location = Locations(country=country, activity= activity, address=rating, user_id = current_user.id, ref=ref)
     db.session.add(location)
     db.session.commit()
     return redirect(url_for('view_location'))
