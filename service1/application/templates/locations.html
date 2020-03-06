@@ -10,16 +10,15 @@
 <br>
 
 
-<table class="table table-bordered">
+<table class="table table-bordered table">
 	<thead>
-		<tr>
 			<th scope="col"></th>
 			<th scope="col">Country</th>
 			<th scope="col">City</th>
 			<th scope="col">Activity</th>
 			<th scope="col">Visitor Rating</th>
 			<th scope="col">Comment</th>
-		</tr>
+			<th scope="col">Options</th>
 	</thead>
 	<tbody>
 	{% for location in locations %}
@@ -30,15 +29,20 @@
 			<td>{{location.activity}}</td>
 			<td>{{location.address}}</td>
 			<td>{{location.comment}}</td>
-			<td><form method='POST' action="/update_comment/{{location.id}}">
+					
+			<td><div class="btn-group" role="group" aria-label="navigate">
+			<form method='POST' action="/update_comment/{{location.id}}">
 			<button type="submit" class="btn btn-outline-success btn-sm">Update comment</button>
-			</form></td>
-		
-		
-			<td><form method='POST' action="/delete_location/{{location.id}}">
+			</form>
+			<form method='POST' action="/pic_location/{{location.ref}}">
+			<button type="submit" class="btn btn-outline-success btn-sm">View Location</button>
+			</form>
+			<br>
+
+			<form method='POST' action="/delete_location/{{location.id}}">
 			<button type="submit" class="btn btn-outline-danger btn-sm">Delete activity</button>
 			</form></td>
-		
+			</div>
 		
 		
 		</tr>

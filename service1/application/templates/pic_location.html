@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<div class="text-center">
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+<img src ='https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference={{ref}}&key=AIzaSyDHm-RLScd8iBylQ0YGNB44NcmKIU8teDQ' alt='Image' class= "img-thumbnail" style= 'float:center;width:25%;height:40%'>
+
+<br>
+<br>
+
+	<form method='POST' action='/view_location'>
+			<button type ='submit' class='btn btn-success btn-sm'>Back to Locations</button>
+		</form>
+
+	<form method='POST' action='/search'>
+			<button type ='submit' class='btn btn-success btn-sm'>Back to Home</button>
+		</form>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

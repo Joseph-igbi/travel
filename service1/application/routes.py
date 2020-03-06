@@ -5,7 +5,6 @@ from application import app, db, bcrypt
 from application.forms import NameForm, LoginForm, RegistrationForm, UpdateCommentForm
 from application.models import Users, Locations 
 from flask_login import login_user, current_user, logout_user, login_required
-
 import requests
 import random
 
@@ -51,12 +50,24 @@ def register():
     else:
         print(form.errors)
     return render_template('register.html', title='Register', form = form)
+
 @app.route("/account", methods=['GET','POST'])
 @login_required
 def account():
     user =current_user
     return render_template('account.html', title='Hi %s'%(user.first_name),user=user )
 
+@app.route("/account_delete", methods=['GET','POST'])
+@login_required
+def account_delete():
+    user =current_user.id
+    locations = Locations.query.filter_by(user_id=user).all()
+    for location in locations:
+        db.session.delete(location)
+    account = Users.query.filter_by (id = user).first()
+    db.session.delete(account)
+    db.session.commit()
+    return redirect(url_for('register'))
 
 
 
@@ -95,7 +106,7 @@ def result(city,country,name):
                 'rating':r['results'][num]['rating']
                 }
     print(location)
-        
+    
     picture = {
                 'height': r['results'][num]['photos'][0]['height'],
                 'html_attributions': r['results'][num]['photos'][0]['html_attributions'],
@@ -106,54 +117,41 @@ def result(city,country,name):
     return render_template('result.html', title='TravelBug', name=name ,country=str(country).strip("'"), city=city, location=location, width=picture['width'], ref=picture['photo_reference'])
 
 
-@app.route('/add_location/<country>/<activity>/<rating>/<city>', methods=['GET', 'POST'])
-def add_location(country,activity,rating,city):
-    
+@app.route('/add_location/<country>/<activity>/<rating>/<city>/<ref>', methods=['GET', 'POST'])
+def add_location(country,activity,rating,city,ref):
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
     country = str(country).strip("'")
     activity = str(activity)
     rating = str(rating)
     city=str(city).strip("'")
+    ref = str(ref)
 
-    location = Locations(country=country, city=city, activity= activity, address=rating, user_id = current_user.id)
+    location = Locations(country=country, city=city, activity= activity, address=rating, user_id = current_user.id, ref=ref)
     db.session.add(location)
     db.session.commit()
     return redirect(url_for('view_location'))
 
 @app.route('/view_location', methods=['GET','POST'])
-@login_required
 def view_location():
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
     user = current_user.id
     loc = Locations.query.filter_by(traveller=current_user).all()
     name = str(current_user.first_name)
     return render_template('locations.html', locations=loc, name=name)
 
-#@app.route('/view_saved/<city>/<address>', methods=['GET','POST'])
-#@login_required
-#def view_saved(city,address):
- #   user = current_user.id
-  #  name = str(current_user.first_name)
-   # url='https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attraction&language=en&key=AIzaSyDHm-RLScd8iBylQ0YGNB44NcmKIU8teDQ'
-    #r = requests.get(url.format(address)).json()
-    #location = {
-     #           'name': r['results'][num]['name'],
-      #          'address':r['results'][num]['formatted_address'],
-       #         'rating':r['results'][num]['rating']
-#                }
-    #print(location)
-        
-    #picture = {
-    #            'height': r['results'][num]['photos'][0]['height'],
-    #            'html_attributions': r['results'][num]['photos'][0]['html_attributions'],
-    #            'width': r['results'][num]['photos'][0]['width'],
-    #            'photo_reference': r['results'][num]['photos'][0]['photo_reference']
-    #    }
-    #return render_template('locations.html', locations=loc, name=name)
-
-
+@app.route('/pic_location/<ref>', methods=['GET','POST'])
+def pic_location(ref):
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
+    ref = ref
+    return render_template('pic_location.html', ref=ref)
 
 @app.route('/update_comment/<location_id>', methods=['GET','POST'])
-@login_required
 def update_comment(location_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
     form = UpdateCommentForm()
     if form.validate_on_submit():
         dbcomment = Locations.query.filter_by(id=int(location_id)).first()
@@ -166,8 +164,9 @@ def update_comment(location_id):
     
 
 @app.route('/delete_location/<location_id>', methods=['GET', 'POST'])
-@login_required
 def delete_location(location_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
     loc = Locations.query.filter_by(id=int(location_id)).first()
     db.session.delete(loc)
     db.session.commit()

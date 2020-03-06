@@ -28,6 +28,7 @@ class Locations(db.Model, UserMixin):
     activity = db.Column(db.String(500), nullable=False)
     address = db.Column(db.String(1000), nullable=False)
     comment = db.Column(db.String(1000), nullable=True)
+    ref = db.Column(db.String(1000), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     @login_manager.user_loader
