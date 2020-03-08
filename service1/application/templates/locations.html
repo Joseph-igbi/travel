@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{%block body_content%}
+
+
+
+
+
+<h3> Your Locations </h3>
+
+<br>
+
+
+<table class="table table-bordered table">
+	<thead>
+			<th scope="col"></th>
+			<th scope="col">Country</th>
+			<th scope="col">City</th>
+			<th scope="col">Activity</th>
+			<th scope="col">Visitor Rating</th>
+			<th scope="col">Comment</th>
+			<th scope="col">Options</th>
+	</thead>
+	<tbody>
+	{% for location in locations %}
+		<tr>
+			<th scope="row"></th>
+			<td>{{location.country}}</td>
+			<td>{{location.city}}</td>
+			<td>{{location.activity}}</td>
+			<td>{{location.address}}</td>
+			<td>{{location.comment}}</td>
+					
+			<td><div class="btn-group" role="group" aria-label="navigate">
+			<form method='POST' action="/update_comment/{{location.id}}">
+			<button type="submit" class="btn btn-outline-success btn-sm">Update comment</button>
+			</form>
+			<form method='POST' action="/pic_location/{{location.ref}}">
+			<button type="submit" class="btn btn-outline-success btn-sm">View Location</button>
+			</form>
+			<br>
+
+			<form method='POST' action="/delete_location/{{location.id}}">
+			<button type="submit" class="btn btn-outline-danger btn-sm">Delete activity</button>
+			</form></td>
+			</div>
+		
+		
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+
+
+{% endblock %}
+

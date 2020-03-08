@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block body_content%}
+<br>
+
+<style>
+body{background-image: url('https://k6u8v6y8.stackpathcdn.com/blog/wp-content/uploads/2014/08/Untitled-design-9-1-1.png');
+background-repeat: no-repeat;
+background-size: 100% 90%;
+background-position: center;}
+</style>
+
+
+<h4> <font color ="white">Enter your Login details here</font></h4>
+<div class = 'form'>
+	<form method ='POST', action = ''>
+		{{ form.hidden_tag()}}
+		<font color="white"{{ form.email.label}}</font>
+		{{ form.email}}
+		{% if form.email.errors %}
+			<div class='error'>
+				{% for error in form.email.errors %}
+				<span><font color="white"> {{error}}</font></span>
+				{% endfor %}
+			</div>
+		{% endif %}
+		<br>
+		<br>
+		<font color="white">{{ form.password.label}}</font>
+		{{ form.password}}
+		{% if form.password.errors %}
+			<div class='error'>
+				{% for error in form.password.errors %}
+				<span><font color="white"> {{error}}</font></span>
+				{% endfor %}
+			</div>
+		{% endif %}
+		<br>
+		<br>
+		{{ form.submit}}
+		{{ form.remember}}
+		<font color="white">{{ form.remember.label}}</font>
+		
+	</form>
+</div>
+
+{% endblock %}

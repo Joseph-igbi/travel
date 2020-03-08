@@ -109,6 +109,14 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+msvenv
+venv1
+venv2
+venv3
+venv4
+
+
+nginx
 
 # Spyder project settings
 .spyderproject
