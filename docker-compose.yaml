@@ -2,6 +2,7 @@
 version: "3.7"
 services:
    main_service:
+     image: 127.0.0.1:5000/t1 
      build: ./service1
      ports:
      - target: 5000
@@ -11,6 +12,7 @@ services:
      - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
 
    service2:
+     image: 127.0.0.1:5000/t2 
      build: ./service2
      ports:
      - target: 5000
@@ -19,6 +21,7 @@ services:
      - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
 
    service3:
+     image: 127.0.0.1:5000/t3 
      build: ./service3
      ports:
      - target: 5000
@@ -27,6 +30,7 @@ services:
      - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
 
    service4:
+     image: 127.0.0.1:5000/t4 
      build: ./service4
      ports:
      - target: 5000
