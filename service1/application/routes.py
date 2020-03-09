@@ -97,7 +97,7 @@ def result(city,country,name):
     name = str(name)
     city = str(city)
     country= str(country).strip("'")
-    url='https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attraction&language=en&key=AIzaSyDHm-RLScd8iBylQ0YGNB44NcmKIU8teDQ'
+    url='https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attraction&language=en&key=AIzaSyDKXf1NroHglJxb_2GF3VsT_N67Q4XH7ac'
     r = requests.get(url.format(city)).json()
     num=random.randint(0,len(r['results'])-1)
     location = {
