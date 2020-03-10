@@ -9,7 +9,7 @@ services:
        published: 5001
      environment: 
      - SECRET_KEY="7218a9143c27c16610765205a1b21cb7"
-     - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
+     - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
    service2:
      image: 127.0.0.1:5000/t2 
@@ -18,7 +18,7 @@ services:
      - target: 5000
      environment: 
      - SECRET_KEY="7218a9143c27c16610765205a1b21cb7"
-     - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
+     - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
    service3:
      image: 127.0.0.1:5000/t3 
@@ -27,7 +27,7 @@ services:
      - target: 5000
      environment: 
      - SECRET_KEY="7218a9143c27c16610765205a1b21cb7"
-     - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
+     - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
    service4:
      image: 127.0.0.1:5000/t4 
@@ -36,8 +36,14 @@ services:
      - target: 5000
      environment: 
      - SECRET_KEY="7218a9143c27c16610765205a1b21cb7"
-     - DATABASE_URI2=mysql+pymysql://root:admin@34.89.33.37/flask2
+     - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
+
+   database:
+     image: mysql:5.7
+     environment: 
+     - MYSQL_ROOT_PASSWORD=admin
+     - MYSQL_DATABASE=flask2
 
 
 
