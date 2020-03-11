@@ -41,6 +41,7 @@ services:
 
    database:
      image: mysql:5.7
+     ports: 
      environment: 
      - MYSQL_ROOT_PASSWORD=admin
      - MYSQL_DATABASE=flask2
