@@ -2,7 +2,7 @@
 version: "3.7"
 services:
    main_service:
-     image: 127.0.0.1:5000/t1 
+     image: josephigbi 
      build: ./service1
      ports:
      - target: 5000
@@ -12,7 +12,7 @@ services:
      - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
    service2:
-     image: 127.0.0.1:5000/t2 
+     image: josephigbi 
      build: ./service2
      ports:
      - target: 5000
@@ -21,7 +21,7 @@ services:
      - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
    service3:
-     image: 127.0.0.1:5000/t3 
+     image: josephigbi
      build: ./service3
      ports:
      - target: 5000
@@ -30,7 +30,7 @@ services:
      - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
    service4:
-     image: 127.0.0.1:5000/t4 
+     image: josephigbi 
      build: ./service4
      ports:
      - target: 5000
@@ -47,7 +47,6 @@ services:
      environment: 
      - MYSQL_ROOT_PASSWORD=admin
      - MYSQL_DATABASE=flask2
-
 
 
 
