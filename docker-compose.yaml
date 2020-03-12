@@ -2,7 +2,7 @@
 version: "3.7"
 services:
    main_service:
-     image: josephigbi/service-1 
+           image: josephigbi/service-1:$BUILD_NUMBER 
      build: ./service1
      ports:
      - target: 5000
