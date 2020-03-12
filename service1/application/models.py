@@ -24,7 +24,7 @@ class Users(db.Model, UserMixin):
 class Locations(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     country = db.Column(db.String(100), nullable=False)
-    city = db.Column(db.String(100), nullable=False)
+    city = db.Column(db.String(100), nullable=True)
     activity = db.Column(db.String(500), nullable=False)
     address = db.Column(db.String(1000), nullable=False)
     comment = db.Column(db.String(1000), nullable=True)
