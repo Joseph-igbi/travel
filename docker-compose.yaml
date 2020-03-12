@@ -12,7 +12,7 @@ services:
      - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
    service2:
-     image: josephigbi/service-2:$BUILD_NUMBER
+     image: josephigbi/service-2
      build: ./service2
      ports:
      - target: 5000
@@ -21,7 +21,7 @@ services:
      - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
    service3:
-     image: josephigbi/service-3:$BUILD_NUMBER
+     image: josephigbi/service-3
      build: ./service3
      ports:
      - target: 5000
@@ -30,7 +30,7 @@ services:
      - DATABASE_URI2=mysql+pymysql://root:admin@database/flask2
 
    service4:
-     image: josephigbi/service-4:$BUILD_NUMBER
+     image: josephigbi/service-4
      build: ./service4
      ports:
      - target: 5000
