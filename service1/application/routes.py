@@ -7,6 +7,7 @@ from application.models import Users, Locations
 from flask_login import login_user, current_user, logout_user, login_required
 import requests
 import random
+import os
 
 
 
@@ -97,8 +98,9 @@ def result(city,country,name):
     name = str(name)
     city = str(city)
     country= str(country).strip("'")
-    url='https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attraction&language=en&key=AIzaSyDKXf1NroHglJxb_2GF3VsT_N67Q4XH7ac'
-    r = requests.get(url.format(city)).json()
+    api = os.getenv('GOOGLE_API')
+    url='https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attraction&language=en&key={}'
+    r = requests.get(url.format(city,api)).json()
     num=random.randint(0,len(r['results'])-1)
     location = {
                 'name': r['results'][num]['name'],
@@ -114,7 +116,7 @@ def result(city,country,name):
                 'photo_reference': r['results'][num]['photos'][0]['photo_reference']
             }
 
-    return render_template('result.html', title='TravelBug', name=name ,country=str(country).strip("'"), city=city, location=location, width=picture['width'], ref=picture['photo_reference'])
+    return render_template('result.html', title='TravelBug', api=api, name=name ,country=str(country).strip("'"), city=city, location=location, width=picture['width'], ref=picture['photo_reference'])
 
 
 @app.route('/add_location/<country>/<activity>/<rating>/<city>/<ref>', methods=['GET', 'POST'])
@@ -134,12 +136,13 @@ def add_location(country,activity,rating,city,ref):
 
 @app.route('/view_location', methods=['GET','POST'])
 def view_location():
+    api = os.getenv('GOOGLE_API')
     if not current_user.is_authenticated:
         return redirect(url_for('register'))
     user = current_user.id
     loc = Locations.query.filter_by(traveller=current_user).all()
     name = str(current_user.first_name)
-    return render_template('locations.html', locations=loc, name=name)
+    return render_template('locations.html', locations=loc, name=name, api=api)
 
 @app.route('/pic_location/<ref>', methods=['GET','POST'])
 def pic_location(ref):
