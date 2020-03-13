@@ -98,9 +98,9 @@ def result(city,country,name):
     name = str(name)
     city = str(city)
     country= str(country).strip("'")
-    api = os.getenv('GOOGLE_API')
+    api = str(os.getenv('GOOGLE_API')).strip("'")
     url='https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attraction&language=en&key={}'
-    r = requests.get(url.format(city,api)).json()
+    r = requests.get(url.format(city, api)).json()
     num=random.randint(0,len(r['results'])-1)
     location = {
                 'name': r['results'][num]['name'],
