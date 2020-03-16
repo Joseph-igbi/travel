@@ -44,12 +44,13 @@ As part of the automated deployment, the jenkins vm would ssh onto the manager s
 ### App Microservice architecture
 The app microservice structure was as shown below with the arrows representing HTTP requests between the services.
 ![micro-arch]
-1. User provides name which is sent from Service 1 to Service 4. 
-2. There are 100 countries in the database. If the length of the name % 5=0 then Service 2 generates 18 random numbers between 0 and 19 then 2 random numbers between 20-40,...80-100 totalling a list of 26 random numbers. if the length of the name%5= 1 then the 18 random numbers are generated between 20-40 and so on. Therefore the lenght of name gives a 70% chance of the country chosed being from a particular area. This list is returned to Service 4.
-3. Service 3 gets the name from Service 4 and chooses a random letter from the name. The numerical equivalent of the name (a=1,b=2..) is returned to Service 4
+1. User provides name which is sent from Main Service (Service 1) to Service 4. 
+2. There are 100 countries in the database. If the length of the name % 5=0 then Service 2 generates 18 random numbers between 0 and 19 then 2 random numbers between 20-40,...80-100 totalling a list of 26 random numbers. if the length of the name%5= 1 then the 18 random numbers are generated between 20-40 and so on. Therefore the length of name gives a 70% chance of the country chosen being from a particular area. This list is returned to Service 4.
+3. Service 3 gets the name from Service 4 and chooses a random letter from the name. The numerical equivalent of the letter (a=1,b=2..) is returned to Service 4.
 4. In Service 4 the two random objects generated are combined. The random number from Service 3 is used as an Index for the list of numbers from Service 2. A number from the list is returned.
-5. This number is used as an Index for the countries in the database. This is returned from the database to service 4 
-6,7,8. The country is returned to Service 1 which again using HTTP requests communicates with the google places API to return tourist locations for that country which is displayed to the user.
+5. This number is used as an Index for the countries in the database. This is returned from the database to service 4. 
+6. The country is returned to Service 1 which again using HTTP requests communicates with the google places API to return tourist locations for that country which is displayed to the user.
+
 ### Front End Design
 
 
