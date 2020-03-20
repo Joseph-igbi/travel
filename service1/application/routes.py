@@ -98,9 +98,9 @@ def result(city,country,name):
     name = str(name)
     city = str(city)
     country= str(country).strip("'")
-    api = str(os.getenv('GOOGLE_API')).strip("'")
+    google_api= os.getenv('API_KEY')
     url='https://maps.googleapis.com/maps/api/place/textsearch/json?query={}+tourist+attraction&language=en&key={}'
-    r = requests.get(url.format(city, api)).json()
+    r = requests.get(url.format(city, google_api)).json()
     num=random.randint(0,len(r['results'])-1)
     location = {
                 'name': r['results'][num]['name'],
@@ -116,7 +116,7 @@ def result(city,country,name):
                 'photo_reference': r['results'][num]['photos'][0]['photo_reference']
             }
 
-    return render_template('result.html', title='TravelBug', api=api, name=name ,country=str(country).strip("'"), city=city, location=location, width=picture['width'], ref=picture['photo_reference'])
+    return render_template('result.html', title='TravelBug', api=google_api, name=name ,country=str(country).strip("'"), city=city, location=location, width=picture['width'], ref=picture['photo_reference'])
 
 
 @app.route('/add_location/<country>/<activity>/<rating>/<city>/<ref>', methods=['GET', 'POST'])

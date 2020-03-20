@@ -12,5 +12,5 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 ENTRYPOINT ["/usr/local/bin/python", "app.py"]
- 
+
 COPY . .

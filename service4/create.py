@@ -5,7 +5,6 @@ import pandas as pd
 
 
 
-db.drop_all()
 db.create_all()
 
 if len(City.query.all())<1:
