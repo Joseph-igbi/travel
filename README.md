@@ -52,7 +52,11 @@ The app microservice structure was as shown below with the arrows representing H
 6. The country is returned to Service 1 which again using HTTP requests communicates with the google places API to return tourist locations for that country which is displayed to the user.
 
 ### Front End Design
-
+![signin]
+![name]
+![result]
+![view]
+![stored]
 
 
 
@@ -69,3 +73,8 @@ The app microservice structure was as shown below with the arrows representing H
 [epic]:https://i.imgur.com/lx59k72.png
 [micro-arch]:https://i.imgur.com/1Ho1bsO.png?1
 [service-arch]:https://i.imgur.com/iV3AiEx.png
+[signin]:https://i.imgur.com/A6IlVwD.jpg?1
+[name]:https://i.imgur.com/ahA3yUZ.jpg
+[result]:https://i.imgur.com/3xs4jfr.jpg
+[view]:https://i.imgur.com/JRCM2tD.jpg
+[stored]:https://i.imgur.com/1jpsnBe.jpg
